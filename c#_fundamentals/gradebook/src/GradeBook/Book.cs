@@ -3,12 +3,10 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-    class Book
+    public class Book
     {
         private List<double> grades;
         private string name;
-        private double highGrade;
-        private double lowGrade;
 
         //CREATING ACCESOR
         public string Name { get => this.name; }
@@ -17,8 +15,6 @@ namespace GradeBook
         {
             this.grades = new List<double>();
             this.name = name;
-            this.highGrade = double.MinValue;
-            this.lowGrade = double.MaxValue;
         }
 
         public void AddGrade(double grade)
@@ -28,28 +24,32 @@ namespace GradeBook
                 this.grades.Add(grade);
         }
 
-        public double GetAvgGrade()
+        public Statistics GetStatistics()
         {
-            var result = 0.0;
+            var result = new Statistics();
+            result.Average = 0.0;
+            result.High = double.MinValue;
+            result.Low = double.MaxValue;
 
             foreach (var grade in this.grades)
             {
-                result += grade;
-                this.lowGrade = Math.Min(this.lowGrade, grade);
-                this.highGrade = Math.Max(this.highGrade, grade);
+                result.Average += grade;
+                result.Low = Math.Min(result.Low, grade);
+                result.High = Math.Max(result.High, grade);
             }
 
             // SORT OF VALIDATION - AVOID DIVISION BY ZERO
-            if (this.grades.Count.Equals(0))
-                return result;
+            if (!this.grades.Count.Equals(0))
+                result.Average /= this.grades.Count;
 
-            return result / this.grades.Count;
+            return result;
         }
 
         public void PrintStatistics()
         {
-            System.Console.WriteLine($"The book \"{this.Name}\" has average grade {this.GetAvgGrade():N1}");
-            System.Console.WriteLine($"The highest grade is {this.highGrade} but the lowest value is {this.lowGrade}.");
+            var statistics = this.GetStatistics();
+            System.Console.WriteLine($"The book \"{this.Name}\" has average grade {statistics.Average:N1}");
+            System.Console.WriteLine($"The highest grade is {statistics.High} but the lowest value is {statistics.Low}.");
         }
 
     }

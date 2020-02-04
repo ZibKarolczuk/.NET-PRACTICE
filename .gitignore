@@ -6,7 +6,7 @@ packages
 .git
 
 # temporary no test folder
-test
+#test
 
 # no files with following extension
 .a
