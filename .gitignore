@@ -2,9 +2,13 @@
 bin
 obj
 packages
+.vscode
+.git
 
 # temporary no test folder
 test
 
 # no files with following extension
 .a
+
+#no following files
