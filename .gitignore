@@ -1,0 +1,10 @@
+# no any following folders
+bin
+obj
+packages
+
+# temporary no test folder
+test
+
+# no files with following extension
+.a
