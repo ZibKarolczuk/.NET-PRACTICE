@@ -2,7 +2,7 @@
 bin
 obj
 packages
-.vscode
+#.vscode
 .git
 
 # temporary no test folder
