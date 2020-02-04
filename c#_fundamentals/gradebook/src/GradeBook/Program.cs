@@ -7,30 +7,13 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var grades = new List<double>() { 34.1, 10.3, 7.1, 4.2, 17.99 };
-            grades.Add(56.1);
+            var book = new Book("Ania z zielonego wzgórza");
 
-            if (args.Length > 0)
-            {
-                Console.WriteLine($"Good morning, {args[0]} !");
-                System.Console.WriteLine($"The average grade is {avgArray(grades):N1}");
-            }
-            else
-            {
-                Console.WriteLine("Hello User!");
-            }
-        }
+            book.AddGrade(89.4);
+            book.AddGrade(50.7);
+            book.AddGrade(98.9);
 
-        public static double avgArray(List<double> array)
-        {
-            var result = 0.0;
-            foreach (var number in array)
-            {
-                result += number;
-            }
-
-            result /= array.Count;
-            return result;
+            book.PrintStatistics();
         }
     }
 }
