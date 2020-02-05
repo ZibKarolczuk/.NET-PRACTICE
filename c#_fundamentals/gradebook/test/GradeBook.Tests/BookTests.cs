@@ -36,6 +36,7 @@ namespace GradeBook.Tests
             Assert.Equal(70, actual.Average);
             Assert.Equal(90, actual.High);
             Assert.Equal(40, actual.Low);
+            Assert.Equal('D', actual.Letter);
 
         }
     }
