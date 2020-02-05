@@ -159,5 +159,30 @@ namespace GradeBook.Tests
             //variable Read Only, canot modify that!
             variable2 = value;
         }
+
+        //string type is a reference type but behave like a value type - String is immutable!
+        [Fact]
+        public void TypeTest_StringReferenceType_BehaveAsValueType()
+        {
+            string name = "Zbigniew";
+
+            MakeUpperCase(name);
+            Assert.Equal("Zbigniew", name);
+            Assert.NotEqual("ZBIGNIEW", name);
+
+            MakeUpperCaseRef(ref name);
+            Assert.Equal("ZBIGNIEW", name);
+
+        }
+
+        private void MakeUpperCase(string parameter)
+        {
+            parameter = parameter.ToUpper();
+        }
+
+        private void MakeUpperCaseRef(ref string parameter)
+        {
+            parameter = parameter.ToUpper();
+        }
     }
 }
