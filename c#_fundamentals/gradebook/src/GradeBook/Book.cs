@@ -27,7 +27,7 @@ namespace GradeBook
             }
             else
             {
-                System.Console.WriteLine("Invalid value");
+                throw new ArgumentException($"invalid {nameof(grade)}");
             }
         }
 
