@@ -31,6 +31,31 @@ namespace GradeBook
             }
         }
 
+        public void AddLetterGrade(char letter)
+        {
+            switch (letter)
+            {
+                case 'A':
+                    AddGrade(90);
+                    break;
+                case 'B':
+                    AddGrade(80);
+                    break;
+                case 'C':
+                    AddGrade(70);
+                    break;
+                case 'D':
+                    AddGrade(60);
+                    break;
+                case 'E':
+                    AddGrade(50);
+                    break;
+                default:
+                    AddGrade(0);
+                    break;
+            }
+        }
+
         public Statistics GetStatistics()
         {
             var result = new Statistics();
@@ -77,6 +102,12 @@ namespace GradeBook
 
             for (var index = 0; index < grades.Count; index++)
             {
+                if (grades[index] < 60)
+                {
+                    // break
+                    // continue;
+                }
+
                 result.Average += grades[index];
                 result.Low = Math.Min(result.Low, grades[index]);
                 result.High = Math.Max(result.High, grades[index]);
