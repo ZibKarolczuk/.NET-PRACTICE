@@ -7,10 +7,10 @@ namespace GradeBook
     {
         private List<double> grades;
         // private string name;
-        private string _name;
 
         //CREATING ACCESOR
 
+        // private string _name;
         // public string Name
         // {
         //     get
@@ -33,12 +33,14 @@ namespace GradeBook
             get; private set;
         }
 
-
+        readonly string category = "Science";
+        public const string ISBN = "12314-90231-23123-33";
 
         public Book(string name)
         {
             this.grades = new List<double>();
             Name = name;
+            category = "Thriller";
         }
 
         public void AddGrade(double grade)
@@ -166,6 +168,7 @@ namespace GradeBook
         {
             var statistics = this.GetStatistics();
             System.Console.WriteLine($"The book \"{this.Name}\" has average grade {statistics.Average:N1}");
+            System.Console.WriteLine($"ISBN is {Book.ISBN}");
             System.Console.WriteLine($"The highest grade is {statistics.High}");
             System.Console.WriteLine($"The lowest value is {statistics.Low}");
             System.Console.WriteLine($"The letter grade is {statistics.Letter}");
