@@ -7,10 +7,33 @@ namespace GradeBook
     {
         private List<double> grades;
         // private string name;
-        public string Name;
+        private string _name;
 
         //CREATING ACCESOR
-        // public string Name { get => { return this.name} };
+
+        // public string Name
+        // {
+        //     get
+        //     {
+        //         return _name;
+        //     }
+        //     set
+        //     {
+        //         if (!String.IsNullOrEmpty(value))
+        //         {
+        //             _name = value;
+        //         }
+        //     }
+        // }
+
+        //CREATING ACCESOR - EASIER APPROACH (COMPILER TAKE CARE OF THE REST!)
+        // THIS IS CALLED AUTOPROPERTY IN C#
+        public string Name
+        {
+            get; private set;
+        }
+
+
 
         public Book(string name)
         {
@@ -31,7 +54,7 @@ namespace GradeBook
             }
         }
 
-        public void AddLetterGrade(char letter)
+        public void AddGrade(char letter)
         {
             switch (letter)
             {
