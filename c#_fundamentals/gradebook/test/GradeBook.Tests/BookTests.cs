@@ -3,10 +3,10 @@ using Xunit;
 
 namespace GradeBook.Tests
 {
-    public class UnitTest1
+    public class BookTests
     {
         [Fact]
-        public void MakeInitialTestForLearningPurpose()
+        public void InitialTest_ForLearningPurpose_ShouldSucceded()
         {
             //arrange
             var a = 2;
@@ -21,7 +21,7 @@ namespace GradeBook.Tests
         }
 
         [Fact]
-        public void BookTests_GetAvgGrade_ShouldSucceded()
+        public void BookTests_GetStatisticsAsserts_ShouldBeEqual()
         {
             //arrange
             var book = new Book("");

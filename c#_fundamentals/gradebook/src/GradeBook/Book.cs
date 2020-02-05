@@ -6,15 +6,16 @@ namespace GradeBook
     public class Book
     {
         private List<double> grades;
-        private string name;
+        // private string name;
+        public string Name;
 
         //CREATING ACCESOR
-        public string Name { get => this.name; }
+        // public string Name { get => { return this.name} };
 
         public Book(string name)
         {
             this.grades = new List<double>();
-            this.name = name;
+            Name = name;
         }
 
         public void AddGrade(double grade)
