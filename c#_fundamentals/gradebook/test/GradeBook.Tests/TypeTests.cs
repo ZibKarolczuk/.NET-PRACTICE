@@ -89,34 +89,34 @@ namespace GradeBook.Tests
             Assert.Equal("Pigmeje z Zanzibaru", book1.Name);
         }
 
-        private Book GetBook(string name)
+        private InMemoryBook GetBook(string name)
         {
-            return new Book(name);
+            return new InMemoryBook(name);
         }
 
-        private void SetName(Book book, string name)
+        private void SetName(InMemoryBook book, string name)
         {
             book.Name = name;
         }
 
-        private void GetBookSetName(Book book, string name)
+        private void GetBookSetName(InMemoryBook book, string name)
         {
-            book = new Book(name);
+            book = new InMemoryBook(name);
         }
 
-        private void GetBookWithReferenceSetName(ref Book book, string name)
+        private void GetBookWithReferenceSetName(ref InMemoryBook book, string name)
         {
             // 'book' PARAMETER MAY BE MODIFIED OR NOT
-            book = new Book(name);
+            book = new InMemoryBook(name);
         }
 
-        private void GetBookWithOutReferenceSetName(out Book book, string name)
+        private void GetBookWithOutReferenceSetName(out InMemoryBook book, string name)
         {
             // 'book' PARAMETER MUST BE MODIFIED !!!
-            book = new Book(name);
+            book = new InMemoryBook(name);
         }
 
-        private void GetBookWithInReferenceSetName(in Book book, string name)
+        private void GetBookWithInReferenceSetName(in InMemoryBook book, string name)
         {
             // 'book' PARAMETER CANOT BE MODIFIED - READ ONLY VARIABLE !!!
             // book = new Book(name);

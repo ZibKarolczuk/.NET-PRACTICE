@@ -7,9 +7,20 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new Book("Ania z zielonego wzgórza");
-            System.Console.WriteLine($"Please rate a book \"{book.Name}\".\n");
+            var book = new InMemoryBook("Ania z zielonego wzgórza");
 
+            book.GradeAdded += OnGradeAdded;
+            book.GradeAdded += OnGradeAddedAds;
+
+            System.Console.WriteLine($"Please rate a book \"{book.Name}\".\n");
+            EnterGrades(book);
+
+            System.Console.WriteLine("");
+            book.PrintStatistics();
+        }
+
+        private static void EnterGrades(IBook book)
+        {
             while (true)
             {
                 System.Console.Write("Enter your grade or press 'q' to quit: ");
@@ -39,9 +50,16 @@ namespace GradeBook
                 }
 
             }
+        }
 
-            System.Console.WriteLine("");
-            book.PrintStatistics();
+        static void OnGradeAdded(object sender, EventArgs e)
+        {
+            System.Console.WriteLine("A grade was added");
+        }
+
+        static void OnGradeAddedAds(object sender, EventArgs e)
+        {
+            System.Console.WriteLine("Check rates online!");
         }
     }
 }

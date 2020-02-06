@@ -24,7 +24,7 @@ namespace GradeBook.Tests
         public void BookTests_GetStatisticsAsserts_ShouldBeEqual()
         {
             //arrange
-            var book = new Book("");
+            var book = new InMemoryBook("");
             book.AddGrade(90);
             book.AddGrade(40);
             book.AddGrade(80);

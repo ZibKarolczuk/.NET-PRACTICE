@@ -3,7 +3,48 @@ using System.Collections.Generic;
 
 namespace GradeBook
 {
-    public class Book
+    public interface IBook
+    {
+        void AddGrade(double grade);
+        event GradeAddedDelegate GradeAdded;
+        string Name { get; }
+        Statistics GetStatistics();
+    }
+
+    public class NamedObject
+    {
+        public NamedObject(string name)
+        {
+            Name = name;
+        }
+
+        //CREATING ACCESOR - EASIER APPROACH (COMPILER TAKE CARE OF THE REST!)
+        // THIS IS CALLED AUTOPROPERTY IN C#
+        public string Name
+        {
+            get;
+            // private set;
+            set;
+        }
+    }
+
+    public abstract class Book : NamedObject, IBook
+    {
+        public Book(string name) : base(name)
+        {
+        }
+
+        public virtual event GradeAddedDelegate GradeAdded;
+
+        public abstract void AddGrade(double grade);
+
+        public virtual Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class InMemoryBook : Book
     {
         private List<double> grades;
         // private string name;
@@ -26,29 +67,28 @@ namespace GradeBook
         //     }
         // }
 
-        //CREATING ACCESOR - EASIER APPROACH (COMPILER TAKE CARE OF THE REST!)
-        // THIS IS CALLED AUTOPROPERTY IN C#
-        public string Name
-        {
-            get; private set;
-        }
-
         readonly string category = "Science";
         public const string ISBN = "12314-90231-23123-33";
 
-        public Book(string name)
+        public override event GradeAddedDelegate GradeAdded;
+
+        public InMemoryBook(string name) : base(name)
         {
             this.grades = new List<double>();
-            Name = name;
             category = "Thriller";
         }
 
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             // SORT OF VALIDATION
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -81,7 +121,7 @@ namespace GradeBook
             }
         }
 
-        public Statistics GetStatistics()
+        public override Statistics GetStatistics()
         {
             var result = new Statistics();
             result.Average = 0.0;
@@ -168,7 +208,7 @@ namespace GradeBook
         {
             var statistics = this.GetStatistics();
             System.Console.WriteLine($"The book \"{this.Name}\" has average grade {statistics.Average:N1}");
-            System.Console.WriteLine($"ISBN is {Book.ISBN}");
+            System.Console.WriteLine($"ISBN is {InMemoryBook.ISBN}");
             System.Console.WriteLine($"The highest grade is {statistics.High}");
             System.Console.WriteLine($"The lowest value is {statistics.Low}");
             System.Console.WriteLine($"The letter grade is {statistics.Letter}");
