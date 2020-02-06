@@ -1,6 +1,7 @@
 # no any following folders
 bin
 obj
+out
 packages
 #.vscode
 .git

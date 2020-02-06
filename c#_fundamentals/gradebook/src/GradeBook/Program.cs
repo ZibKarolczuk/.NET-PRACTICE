@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace GradeBook
 {
@@ -8,16 +7,13 @@ namespace GradeBook
         static void Main(string[] args)
         {
             // var book = new InMemoryBook("Ania z zielonego wzgórza");
-            IBook book = new DiskBook("Ania z zielonego wzgórza");
+            IBook book = new DiskBook("Jak pies jeździł koleją");
 
             book.GradeAdded += OnGradeAdded;
             book.GradeAdded += OnGradeAddedAds;
 
             System.Console.WriteLine($"Please rate a book \"{book.Name}\".\n");
             EnterGrades(book);
-
-            System.Console.WriteLine("");
-            book.PrintStatistics();
         }
 
         private static void EnterGrades(IBook book)
@@ -29,6 +25,8 @@ namespace GradeBook
 
                 if (input == "q")
                 {
+                    System.Console.WriteLine("");
+                    book.PrintStatistics();
                     break;
                 }
 
