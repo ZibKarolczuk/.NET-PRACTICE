@@ -230,6 +230,11 @@ namespace GradeBook
 
                 // writer.Close(); // Not a great solution as file still open if exception occurs
                 // writer.Dispose(); // Much better
+
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             };
         }
 
