@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/DaysOfWeek/bin/Debug/netcoreapp3.1/DaysOfWeek.dll",
+            "program": "${workspaceFolder}/src/ArrayDaysOfWeek/bin/Debug/netcoreapp3.1/ArrayDaysOfWeek.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/DaysOfWeek",
+            "cwd": "${workspaceFolder}/src/ArrayDaysOfWeek",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
