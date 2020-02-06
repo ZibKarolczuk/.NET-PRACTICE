@@ -224,10 +224,13 @@ namespace GradeBook
 
         public override void AddGrade(double grade)
         {
-            var writer = File.AppendText($"{Name}.txt");
-            writer.WriteLine(grade);
-            // writer.Close(); // Not a great solution as file still open if exception occurs
-            writer.Dispose(); // Much better
+            using (var writer = File.AppendText($"{Name}.txt"))
+            {
+                writer.WriteLine(grade);
+
+                // writer.Close(); // Not a great solution as file still open if exception occurs
+                // writer.Dispose(); // Much better
+            };
         }
 
         public override Statistics GetStatistics()
