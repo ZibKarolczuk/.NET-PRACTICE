@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace GradeBook
 {
@@ -9,6 +10,7 @@ namespace GradeBook
         event GradeAddedDelegate GradeAdded;
         string Name { get; }
         Statistics GetStatistics();
+        void PrintStatistics();
     }
 
     public class NamedObject
@@ -34,14 +36,10 @@ namespace GradeBook
         {
         }
 
-        public virtual event GradeAddedDelegate GradeAdded;
-
+        public abstract event GradeAddedDelegate GradeAdded;
         public abstract void AddGrade(double grade);
-
-        public virtual Statistics GetStatistics()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Statistics GetStatistics();
+        public abstract void PrintStatistics();
     }
 
     public class InMemoryBook : Book
@@ -204,7 +202,7 @@ namespace GradeBook
             return result;
         }
 
-        public void PrintStatistics()
+        public override void PrintStatistics()
         {
             var statistics = this.GetStatistics();
             System.Console.WriteLine($"The book \"{this.Name}\" has average grade {statistics.Average:N1}");
@@ -214,5 +212,29 @@ namespace GradeBook
             System.Console.WriteLine($"The letter grade is {statistics.Letter}");
         }
 
+    }
+
+    public class DiskBook : Book
+    {
+        public DiskBook(string name) : base(name)
+        {
+        }
+
+        public override event GradeAddedDelegate GradeAdded;
+
+        public override void AddGrade(double grade)
+        {
+            var writer = File.AppendText($"{Name}.txt");
+            writer.WriteLine(grade);
+            // writer.Close(); // Not a great solution as file still open if exception occurs
+            writer.Dispose(); // Much better
+        }
+
+        public override Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void PrintStatistics() { }
     }
 }

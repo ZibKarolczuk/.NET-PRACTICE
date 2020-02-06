@@ -7,7 +7,8 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new InMemoryBook("Ania z zielonego wzgórza");
+            // var book = new InMemoryBook("Ania z zielonego wzgórza");
+            IBook book = new DiskBook("Ania z zielonego wzgórza");
 
             book.GradeAdded += OnGradeAdded;
             book.GradeAdded += OnGradeAddedAds;
