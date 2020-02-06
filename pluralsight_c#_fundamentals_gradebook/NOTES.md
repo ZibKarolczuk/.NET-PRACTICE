@@ -3,6 +3,16 @@ TOPICS TO STUDY
 - abstracts and virtual inside interface
 - abstract method with implementation
 
+
+- non-nullable reference types
+- nullable types
+- generics
+- async & await
+- linq
+- c# and dlr
+- functional programming
+
+
 KEYWORDS
 - using
 - autoproperty ({get; set;}, {get, private set})
@@ -20,6 +30,7 @@ KEYWORDS
 - abstract, virtual, interface
 - typeof
 - public, private, protected
+
 
 KEYWORDS TO LEARN
 - sealed
