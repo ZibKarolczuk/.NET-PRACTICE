@@ -26,6 +26,8 @@ namespace ArrayDaysOfWeek
             foreach (var day in daysOfWeek)
                 System.Console.WriteLine(day.ToLower());
 
+            System.Console.WriteLine("-- - --");
+
             try
             {
                 System.Console.Write("\nWrite n'th number of week [1 - form Monday]: ");
@@ -41,6 +43,23 @@ namespace ArrayDaysOfWeek
                 System.Console.WriteLine(ex.Message);
             }
 
+            System.Console.WriteLine("-- - --");
+
+            try
+            {
+                System.Console.WriteLine("List od countries:");
+
+                Country[] countries = CsvReader.ReadFirstNCountries(4);
+
+                foreach (var country in countries)
+                {
+                    System.Console.WriteLine($"{country.Code}: {country.Population: ### ### ### ###}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
