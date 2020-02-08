@@ -1,4 +1,4 @@
-namespace ListCollection
+namespace DictionaryIntroduction
 {
     public class Country
     {
