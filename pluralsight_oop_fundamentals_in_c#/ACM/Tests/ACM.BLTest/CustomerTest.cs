@@ -60,7 +60,37 @@ namespace ACM.BLTest
 			int expected = 3;
 
 			//Act
-			int actual = Customer.InstanceCount;
+			int actual = Customer.INSTANCE_COUNT;
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void ValidateValid()
+		{
+			//Arrange
+			var customer = new Customer { LastName = "Kowalski", EmailAddress = "kowalski.a@onet.eu" };
+
+			var expected = true;
+
+			//Act
+			var actual = customer.Validate();
+
+			//Assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		[TestMethod]
+		public void ValidateMissingLastName()
+		{
+			//Arrange
+			var customer = new Customer { EmailAddress = "kowalski.a@onet.eu" };
+
+			var expected = false;
+
+			//Act
+			var actual = customer.Validate();
 
 			//Assert
 			Assert.AreEqual(expected, actual);

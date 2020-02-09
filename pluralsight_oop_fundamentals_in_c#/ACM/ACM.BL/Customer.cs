@@ -2,6 +2,17 @@
 {
 	public class Customer
 	{
+		public Customer()
+		{
+			INSTANCE_COUNT++;
+		}
+
+		public Customer(int id)
+		{
+			CustomerId = id;
+			INSTANCE_COUNT++;
+		}
+
 		public int CustomerId { get; private set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
@@ -24,11 +35,16 @@
 			}
 		}
 
-		public static int InstanceCount { get; private set; }
+		public static int INSTANCE_COUNT { get; private set; }
 
-		public Customer()
+		public bool Validate()
 		{
-			Customer.InstanceCount++;
+			bool isValid = true;
+
+			if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
+			if (string.IsNullOrWhiteSpace(EmailAddress)) isValid = false;
+
+			return isValid;
 		}
 	}
 }
