@@ -3,11 +3,9 @@ bin
 obj
 out
 packages
-#.vscode
+TestResults
 .git
-
-# temporary no test folder
-#test
+.vs
 
 # no files with following extension
 .a
