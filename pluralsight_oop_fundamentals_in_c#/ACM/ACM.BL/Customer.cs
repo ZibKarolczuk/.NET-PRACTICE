@@ -1,10 +1,11 @@
-﻿namespace ACM.BL
+﻿using System.Collections.Generic;
+
+namespace ACM.BL
 {
 	public class Customer
 	{
-		public Customer()
+		public Customer() : this(0)
 		{
-			INSTANCE_COUNT++;
 		}
 
 		public Customer(int id)
@@ -37,9 +38,13 @@
 
 		public static int INSTANCE_COUNT { get; private set; }
 
+		/// <summary>
+		/// Validates the customer data.
+		/// </summary>
+		/// <returns></returns>
 		public bool Validate()
 		{
-			bool isValid = true;
+			var isValid = true;
 
 			if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
 			if (string.IsNullOrWhiteSpace(EmailAddress)) isValid = false;
