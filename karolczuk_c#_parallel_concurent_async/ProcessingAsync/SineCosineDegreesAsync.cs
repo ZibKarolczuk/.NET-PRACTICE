@@ -27,7 +27,7 @@ namespace ProcessingAsync
             {
 				for (var i = 0; i < angle; i++)
 				{
-					Thread.Sleep(270);
+					Thread.Sleep(timeInterval);
 					Console.WriteLine($" .. cos {i}* = {Math.Cos((i * Math.PI) / 180)}");
 				};
 			});
@@ -39,7 +39,7 @@ namespace ProcessingAsync
             {
                 for (var i = 0; i < angle; i++)
                 {
-                    Thread.Sleep(310);
+                    Thread.Sleep(timeInterval);
                     Console.WriteLine($"  . sin {i}* = {Math.Sin((i * Math.PI) / 180)}");
                 };
 
