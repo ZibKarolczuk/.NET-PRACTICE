@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,14 +12,25 @@ namespace ProcessingAsync
             var ca1 = CosineAngleConsoleAsync(270, 60);
             var ca2 = SineAngleConsoleAsync(410, 45);
 
-			for (var i = 2; i < 10; i++)
-			{
-				Thread.Sleep(i * 335);
-				Console.WriteLine("...");
-			}
+            //for (var i = 2; i < 10; i++)
+            //{
+            //	Thread.Sleep(i * 335);
+            //	Console.WriteLine("...");
+            //}
 
-			await ca1;
-			await ca2;
+            //await ca1;
+            //await ca2;
+
+            var allTasks = new List<Task>() { ca1, ca2 };
+            Task finished = await Task.WhenAny(allTasks);
+
+            if (finished == ca1)
+            {
+                Console.WriteLine("FINISHED WITH TASKS FOR COSINE");
+            }
+            else {
+                Console.WriteLine("FINISHER WITH TASKS FOR SINES");
+            }
 		}
 
 		public static async Task CosineAngleConsoleAsync(int timeInterval, int angle)
