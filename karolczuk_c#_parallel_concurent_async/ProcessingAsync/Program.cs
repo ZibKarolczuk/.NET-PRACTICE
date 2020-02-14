@@ -9,7 +9,8 @@ namespace ProcessingAsync
     {
         public static async Task Main(string[] args)
         {
-            await SineCosineDegrees.Display();
+			//await SineCosineDegrees.Display();
+			await SineCosineDegreesAsync.Display();
         }
     }
 }
