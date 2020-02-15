@@ -12,7 +12,7 @@ namespace ProcessingParallel
 
 		static ParallelOptions options = new ParallelOptions()
 		{
-			MaxDegreeOfParallelism = 3
+			MaxDegreeOfParallelism = -1
 		};
 
 		public static void DisplaySynchronousEnumarating() {
