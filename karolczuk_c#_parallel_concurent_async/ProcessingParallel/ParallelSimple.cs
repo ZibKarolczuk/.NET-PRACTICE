@@ -9,7 +9,11 @@ namespace ProcessingParallel
 	public static class ParallelSimple
 	{
 		static List<int> ANGLES = new List<int>() { 0, 30, 45, 60, 90, 120, 135, 150, 180, 210, 225, 240, 270, 300, 315, 330, 360 };
-		static int MAX_THREADS = 3;
+
+		static ParallelOptions options = new ParallelOptions()
+		{
+			MaxDegreeOfParallelism = 3
+		};
 
 		public static void DisplaySynchronousEnumarating() {
 			Console.WriteLine("\nFirst Solution using synchronous approach");
@@ -28,7 +32,7 @@ namespace ProcessingParallel
 			Console.WriteLine("\nSecond Solution keep simple only with Parallel");
 			var watch = Stopwatch.StartNew();
 
-			Parallel.ForEach<int>(ANGLES, new ParallelOptions { MaxDegreeOfParallelism = MAX_THREADS }, angle =>
+			Parallel.ForEach<int>(ANGLES, options, angle =>
 					{
 						ExecuteForAngle(angle);
 					});
@@ -44,7 +48,7 @@ namespace ProcessingParallel
 
 			await Task.Run(() => {
 
-				Parallel.ForEach<int>(ANGLES, new ParallelOptions { MaxDegreeOfParallelism = MAX_THREADS }, angle =>
+				Parallel.ForEach<int>(ANGLES, options, angle =>
 				{
 					ExecuteForAngle(angle);
 				});
