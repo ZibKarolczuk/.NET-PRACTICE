@@ -19,9 +19,9 @@ namespace ProcessingParallel
 			Console.WriteLine("\nFirst Solution using synchronous approach");
 			var watch = Stopwatch.StartNew();
 
-			for (var angle= 0; angle < ANGLES.Count; angle++)
+			for (var i= 0; i < ANGLES.Count; i++)
 			{
-				ExecuteForAngle(angle);
+				ExecuteForAngle(ANGLES[i]);
 			}
 
 			var elapsedMs = watch.ElapsedMilliseconds;
@@ -60,7 +60,9 @@ namespace ProcessingParallel
 		}
 
 		public static void ExecuteForAngle(int angle) {
-			Console.WriteLine($" cos {angle}* = {Math.Cos((angle * Math.PI) / 180)} [Thread = {Thread.CurrentThread.ManagedThreadId}]");
+			Console.WriteLine($".Starting cos calculation for angle {angle}* [Thread = {Thread.CurrentThread.ManagedThreadId}]");
+			Thread.Sleep(1000);
+			Console.WriteLine($"..Executed cos {angle}* = {Math.Cos((angle * Math.PI) / 180)} [Thread = {Thread.CurrentThread.ManagedThreadId}]");
 		}
 	}
 }
