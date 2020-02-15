@@ -7,11 +7,13 @@ namespace ProcessingParallel
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello Parallel Programming World!\n");
+            Console.WriteLine("Hello Parallel Programming World!");
 
-            ParallelSimple.Display();
+            ParallelSimple.DisplaySynchronousEnumarating();
+			ParallelSimple.DisplayParallel();
+            await ParallelSimple.DisplayParallelWithAwait();
 		}
 	}
 }
