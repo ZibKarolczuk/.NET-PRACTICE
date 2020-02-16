@@ -18,8 +18,9 @@ namespace WebApi_AutoMapper.AutoMapperClass
 		{
 			CreateMap<EmployeeDto, Employee>()
 				.ForMember(dest => dest.City, opt => opt.MapFrom(src => src.CurrentCity))
-				.ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.CurrentCity == reserveArrdess.City? reserveArrdess : src.Address));
-			CreateMap<AddressDto, Address>();
+				.ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.CurrentCity == reserveArrdess.City ? reserveArrdess : src.Address))
+				.ReverseMap();
+			CreateMap<AddressDto, Address>().ReverseMap();
 		}
 	}
 }
