@@ -11,5 +11,6 @@ namespace WebApi_AutoMapper.AutoMapperClass
 		public string Surname { get; set; }
 		public string InsuranceNumber { get; set; }
 		public string CurrentCity { get; set; }
+		public AddressDto Address { get; set; }
 	}
 }

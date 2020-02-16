@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace WebApi_AutoMapper.AutoMapperClass
 {
-	public class Employee
+	public class AddressDto
 	{
-		public string Name { get; set; }
-		public string Surname { get; set; }
-		public string InsuranceNumber { get; set; }
+		public string Street { get; set; }
+		public string ZipCode { get; set; }
 		public string City { get; set; }
-		public Address ShippingAddress { get; set; }
 	}
 }

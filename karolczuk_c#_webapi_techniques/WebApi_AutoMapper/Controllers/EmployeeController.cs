@@ -22,13 +22,21 @@ namespace WebApi_AutoMapper.Controllers
 
 		[HttpGet]
 		public Employee GetEmployee() {
+			AddressDto address = new AddressDto()
+			{
+				Street = "Al. Pokoju 1a",
+				ZipCode = "31-203",
+				City = "Krakow"
+			};
+
 			EmployeeDto employeeDto = new EmployeeDto()
 			{
 				Name = "Zbigniew",
 				Surname = "Karolczuk",
 				InsuranceNumber = "ER998313004",
-				CurrentCity = "Krakow"
+				CurrentCity = "Cieszyn"
 			};
+			employeeDto.Address = address;
 
 			return _mapper.Map<Employee>(employeeDto);
 		}
