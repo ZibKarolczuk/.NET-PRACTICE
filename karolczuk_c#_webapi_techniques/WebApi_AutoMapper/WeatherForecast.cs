@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApi_Simple
+namespace WebApi_AutoMapper
 {
     public class WeatherForecast
     {
