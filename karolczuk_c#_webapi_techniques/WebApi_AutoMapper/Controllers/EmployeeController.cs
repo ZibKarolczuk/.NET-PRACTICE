@@ -31,6 +31,7 @@ namespace WebApi_AutoMapper.Controllers
 
 			EmployeeDto employeeDto = new EmployeeDto()
 			{
+				Id = 12345,
 				Name = "Zbigniew",
 				Surname = "Karolczuk",
 				InsuranceNumber = "ER998313004",
