@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MeterReaderLib;
 using MeterReaderWeb.Data;
+using MeterReaderWeb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,11 +29,11 @@ namespace MeterReaderWeb
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddScoped<JwtTokenValidationService>();
-      services.AddAuthentication()
-        .AddJwtBearer(cfg =>
-        {
-          cfg.TokenValidationParameters = new MeterReaderTokenValidationParameters(_config);
-        });
+      //services.AddAuthentication()
+      //  .AddJwtBearer(cfg =>
+      //  {
+      //    cfg.TokenValidationParameters = new MeterReaderTokenValidationParameters(_config);
+      //  });
 
       services.AddDbContext<ReadingContext>(options =>
           options.UseSqlServer(
@@ -45,10 +46,15 @@ namespace MeterReaderWeb
       services.AddRazorPages();
 
       services.AddScoped<IReadingRepository, ReadingRepository>();
-    }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+            services.AddGrpc(opt => {
+                opt.EnableDetailedErrors = true;
+
+            });
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {
@@ -65,11 +71,14 @@ namespace MeterReaderWeb
 
       app.UseRouting();
 
-      app.UseAuthentication();
-      app.UseAuthorization();
+      //app.UseAuthentication();
+      //app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
       {
+          endpoints.MapGrpcService<MeterService>();
+
+
         endpoints.MapControllerRoute(
                   name: "default",
                   pattern: "{controller=Home}/{action=Index}/{id?}");
