@@ -6,8 +6,14 @@ packages
 TestResults
 .git
 .vs
+node_modules
+wwwroot
+
 
 # no files with following extension
 .a
+.browserslistrc
+appsettings
+package-lock.json
 
 #no following files
